@@ -29,7 +29,7 @@
       "calendar_offset": "Calendar offset (days)",
       "days": "Pickup days",
       "start_date": "Start date (a known pickup)",
-      "every": "Every N weeks",
+      "every": "Frequency",
       "weeks": "Weeks",
       "month_week": "Once a month",
       "month_day": "Day of month (1–31)",
@@ -49,8 +49,8 @@
     },
     "helpers": {
       "entity": "Sensor, calendar or input_datetime giving the next pickup. Leave empty to use the schedule below.",
-      "start_date": "Any date the bin was or will be collected. Pickups repeat every N weeks from it.",
-      "every": "1 = weekly, 2 = fortnightly, 4 = every four weeks. Needs a start date.",
+      "start_date": "Any date the bin was or will be collected. Pickups repeat from it at the frequency below.",
+      "every": "How often this bin is collected, counted from the start date.",
       "weeks": "ISO week parity. Ignored when a start date is set.",
       "holidays": "What happens when a pickup falls on a public holiday.",
       "holiday_calendar": "Calendar from the Holiday integration. Found automatically if left empty.",
@@ -68,6 +68,13 @@
         "all": "Every week",
         "even": "Even weeks",
         "odd": "Odd weeks"
+      },
+      "every": {
+        "1": "Weekly",
+        "2": "Fortnightly",
+        "3": "3 Weekly",
+        "4": "4 Weekly",
+        "n": "Every {n} weeks"
       },
       "month_week": {
         "": "Every week",

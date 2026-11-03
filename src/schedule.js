@@ -26,6 +26,10 @@ export const parseDate = v => {
   return isNaN(d) ? null : midnight(d);
 };
 
+/* every: 1-52 or a word (weekly, fortnightly) → weeks between pickups */
+const EVERY_WORDS = { weekly: 1, fortnightly: 2 };
+export const parseEvery = v => Math.max(1, Math.round(EVERY_WORDS[String(v ?? '').trim().toLowerCase()] ?? (Number(v) || 1)));
+
 /* Turns a (normalised) card config into the rule used by computeFixed. */
 export function buildRule(c) {
   const mday = c.month_day != null && c.month_day !== ''
@@ -41,7 +45,7 @@ export function buildRule(c) {
   const w = normWeeks(c.weeks);
   return {
     days, mday, months, monthWeeks, startDate,
-    every: Math.max(1, Math.round(Number(c.every) || 1)),
+    every: parseEvery(c.every),
     weeks: w === 'even' ? 0 : w === 'odd' ? 1 : null,
     holidays: normHolidays(c.holidays) || 'none',
     hour: Number(c.hour ?? 9),

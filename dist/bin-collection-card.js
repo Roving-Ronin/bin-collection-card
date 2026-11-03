@@ -237,6 +237,8 @@ var parseDate = (v) => {
   const d = /^\d{4}-\d{2}-\d{2}$/.test(s) ? /* @__PURE__ */ new Date(s + "T00:00:00") : new Date(s);
   return isNaN(d) ? null : midnight(d);
 };
+var EVERY_WORDS = { weekly: 1, fortnightly: 2 };
+var parseEvery = (v) => Math.max(1, Math.round(EVERY_WORDS[String(v ?? "").trim().toLowerCase()] ?? (Number(v) || 1)));
 function buildRule(c) {
   const mday = c.month_day != null && c.month_day !== "" ? [].concat(c.month_day).map(Number).filter((x) => x >= 1 && x <= 31) : [];
   const startDate = parseDate(c.start_date);
@@ -251,7 +253,7 @@ function buildRule(c) {
     months,
     monthWeeks,
     startDate,
-    every: Math.max(1, Math.round(Number(c.every) || 1)),
+    every: parseEvery(c.every),
     weeks: w === "even" ? 0 : w === "odd" ? 1 : null,
     holidays: normHolidays(c.holidays) || "none",
     hour: Number(c.hour ?? 9)
@@ -377,7 +379,7 @@ var en_default = {
       calendar_offset: "Calendar offset (days)",
       days: "Pickup days",
       start_date: "Start date (a known pickup)",
-      every: "Every N weeks",
+      every: "Frequency",
       weeks: "Weeks",
       month_week: "Once a month",
       month_day: "Day of month (1–31)",
@@ -397,8 +399,8 @@ var en_default = {
     },
     helpers: {
       entity: "Sensor, calendar or input_datetime giving the next pickup. Leave empty to use the schedule below.",
-      start_date: "Any date the bin was or will be collected. Pickups repeat every N weeks from it.",
-      every: "1 = weekly, 2 = fortnightly, 4 = every four weeks. Needs a start date.",
+      start_date: "Any date the bin was or will be collected. Pickups repeat from it at the frequency below.",
+      every: "How often this bin is collected, counted from the start date.",
       weeks: "ISO week parity. Ignored when a start date is set.",
       holidays: "What happens when a pickup falls on a public holiday.",
       holiday_calendar: "Calendar from the Holiday integration. Found automatically if left empty.",
@@ -416,6 +418,13 @@ var en_default = {
         all: "Every week",
         even: "Even weeks",
         odd: "Odd weeks"
+      },
+      every: {
+        "1": "Weekly",
+        "2": "Fortnightly",
+        "3": "3 Weekly",
+        "4": "4 Weekly",
+        n: "Every {n} weeks"
       },
       month_week: {
         "": "Every week",
@@ -538,8 +547,12 @@ var BinCollectionCardEditor = class extends HTMLElement {
         { name: "days", selector: { select: { multiple: true, options: [0, 1, 2, 3, 4, 5, 6].map((i) => ({ value: String(i), label: weekdayName(loc, i) })) } } },
         { name: "start_date", selector: { date: {} } }
       );
-      if (c.start_date) s.push({ name: "every", selector: { number: { min: 1, max: 12, mode: "box" } } });
-      else s.push({ name: "weeks", selector: sel(opt("weeks", WEEKS)) });
+      if (c.start_date) {
+        const every = parseEvery(c.every), vals = ["1", "2", "3", "4"];
+        const opts = vals.map((v) => ({ value: v, label: t(`editor.options.every.${v}`) }));
+        if (!vals.includes(String(every))) opts.push({ value: String(every), label: t("editor.options.every.n", { n: every }) });
+        s.push({ name: "every", selector: sel(opts) });
+      } else s.push({ name: "weeks", selector: sel(opt("weeks", WEEKS)) });
       s.push(
         { name: "month_week", selector: sel(["", "1", "2", "3", "4", "last"].map((v) => ({ value: v, label: t(`editor.options.month_week.${v}`) }))) },
         { name: "month_day", selector: { number: { min: 1, max: 31, mode: "box" } } },
@@ -579,6 +592,7 @@ var BinCollectionCardEditor = class extends HTMLElement {
       weeks: c.weeks || "all",
       holidays: c.holidays || "none",
       month_week: c.month_week == null ? "" : String(c.month_week),
+      every: String(parseEvery(c.every)),
       days: [].concat(c.days ?? []).map(parseDay).filter((d) => d >= 0 && d <= 6).map(String),
       months: [].concat(c.months ?? []).map(parseMonth).filter((m) => m >= 1 && m <= 12).map(String)
     };
@@ -596,7 +610,8 @@ var BinCollectionCardEditor = class extends HTMLElement {
     if (Array.isArray(v.months)) v.months = v.months.map(Number);
     if (v.show_meter === true) delete v.show_meter;
     if (v.show_status === true) delete v.show_status;
-    if (!v.start_date) delete v.every;
+    if (v.every != null) v.every = parseEvery(v.every);
+    if (!v.start_date || v.every === 1) delete v.every;
     if (!v.holidays || v.holidays === "none") {
       delete v.holiday_calendar;
       delete v.workday_calendar;

@@ -128,3 +128,8 @@ test('colours and their aliases', () => {
   for (const [v, exp] of [['purple', 'purple'], ['violet', 'purple'], ['Green', 'green'], ['lime', 'green']]) assert.equal(normalizeConfig({ bin: v }).bin, exp, v);
   assert.equal(normalizeConfig({ bin: 'burgundy' }).bin, 'burgundy'); // not a colour: left as written, setConfig reports it
 });
+
+test('every accepts numbers and words', () => {
+  for (const [v, exp] of [[undefined, 1], [2, 2], ['3', 3], ['weekly', 1], ['Fortnightly', 2], [0, 1], ['nonsense', 1]])
+    assert.equal(buildRule({ start_date: '2026-11-04', every: v }).every, exp, String(v));
+});

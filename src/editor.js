@@ -1,5 +1,6 @@
 /* Visual editor: ha-form with fields shown only when they apply. */
 import { normalizeConfig, BINS, CONTAINERS, WEEKS, HOLIDAY_MODES, parseDay, parseMonth } from './normalize.js';
+import { parseEvery } from './schedule.js';
 import { dateLocale, t, weekdayName, monthName } from './localize.js';
 
 /* ha-form is only registered once HA has loaded one of its own editors */
@@ -46,7 +47,12 @@ export class BinCollectionCardEditor extends HTMLElement {
       s.push(
         { name: 'days', selector: { select: { multiple: true, options: [0, 1, 2, 3, 4, 5, 6].map(i => ({ value: String(i), label: weekdayName(loc, i) })) } } },
         { name: 'start_date', selector: { date: {} } });
-      if (c.start_date) s.push({ name: 'every', selector: { number: { min: 1, max: 12, mode: 'box' } } });
+      if (c.start_date) {
+        const every = parseEvery(c.every), vals = ['1', '2', '3', '4'];
+        const opts = vals.map(v => ({ value: v, label: t(`editor.options.every.${v}`) }));
+        if (!vals.includes(String(every))) opts.push({ value: String(every), label: t('editor.options.every.n', { n: every }) }); // set in YAML
+        s.push({ name: 'every', selector: sel(opts) });
+      }
       else s.push({ name: 'weeks', selector: sel(opt('weeks', WEEKS)) });
       s.push(
         { name: 'month_week', selector: sel(['', '1', '2', '3', '4', 'last'].map(v => ({ value: v, label: t(`editor.options.month_week.${v}`) }))) },
@@ -83,6 +89,7 @@ export class BinCollectionCardEditor extends HTMLElement {
       show_meter: true, show_status: true, ...c,
       container: c.container || 'wheelie_bin', weeks: c.weeks || 'all', holidays: c.holidays || 'none',
       month_week: c.month_week == null ? '' : String(c.month_week),
+      every: String(parseEvery(c.every)),
       days: [].concat(c.days ?? []).map(parseDay).filter(d => d >= 0 && d <= 6).map(String),
       months: [].concat(c.months ?? []).map(parseMonth).filter(m => m >= 1 && m <= 12).map(String),
     };
@@ -98,7 +105,8 @@ export class BinCollectionCardEditor extends HTMLElement {
     if (Array.isArray(v.months)) v.months = v.months.map(Number);
     if (v.show_meter === true) delete v.show_meter;
     if (v.show_status === true) delete v.show_status;
-    if (!v.start_date) delete v.every;
+    if (v.every != null) v.every = parseEvery(v.every);
+    if (!v.start_date || v.every === 1) delete v.every;
     if (!v.holidays || v.holidays === 'none') { delete v.holiday_calendar; delete v.workday_calendar; }
     if (v.holidays !== 'next_work_day') delete v.workday_calendar;
     for (const k of Object.keys(v)) if (isEmpty(v[k])) delete v[k];

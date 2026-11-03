@@ -82,7 +82,7 @@ full_color: true
 type: custom:bin-collection-card
 bin: yellow
 start_date: 2026-11-04    # a known recycling Wednesday
-every: 2                  # 1 = weekly, 2 = fortnightly, 4 = every four weeks
+every: 2                  # 1 = weekly, 2 = fortnightly, 3 or 4 = every 3 or 4 weeks (or: weekly, fortnightly)
 ```
 Recycling and garden waste on alternate weeks? Give the second card a start date one week later.
 
@@ -237,7 +237,7 @@ cards:
 | `name` | text | from the colour | Card title |
 | `days` | list | — | Pickup days: numbers (0 = Monday) or names (`tuesday`, `tue`). Required unless `start_date`, `month_day` or `entity` is set |
 | `start_date` | date | — | A known pickup date; pickups repeat every `every` weeks from it. Overrides `weeks` |
-| `every` | number | `1` | Weeks between pickups, counted from `start_date` |
+| `every` | number / text | `1` | Weeks between pickups, counted from `start_date`: `1` / `weekly`, `2` / `fortnightly`, `3`, `4`… (the editor offers Weekly, Fortnightly, 3 Weekly, 4 Weekly) |
 | `weeks` | text | all | `even` / `odd`: every other week by ISO week number |
 | `month_week` | text / list | — | Only the `1`st, `2`nd, `3`rd, `4`th or `last` given weekday of the month; a list is possible: `[2, 4]` |
 | `month_day` | number | — | Once a month on a fixed date (1–31; 31 = last day of the month). Replaces `days` |
