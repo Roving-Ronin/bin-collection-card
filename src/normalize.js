@@ -15,9 +15,8 @@ export const BIN_ALIASES = table({
   blue: [],
   grey: ['gray'],
   black: [],
-  brown: [],
 });
-export const BINS = ['red', 'yellow', 'green', 'purple', 'blue', 'grey', 'black', 'brown'];
+export const BINS = ['red', 'yellow', 'green', 'purple', 'blue', 'grey', 'black'];
 
 export const CONTAINER_ALIASES = table({
   wheelie_bin: ['bin', 'wheelie'],

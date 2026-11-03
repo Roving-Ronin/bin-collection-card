@@ -18,8 +18,7 @@ var BCC_BINS = {
     content: "rubbish",
     body: "brightness(.42) contrast(1.15)",
     lid: "brightness(.42) contrast(1.15)"
-  },
-  brown: { img: "yellow", color: "#a1887f", content: "organics", paint: "#8a5a2b", lid: "hue-rotate(-14deg) saturate(.75) brightness(.5)" }
+  }
 };
 var BCC_BODY_RATIO = { grey: "190/295", yellow: "190/291" };
 var BCC_WHEEL_HOLE = "radial-gradient(ellipse 10% 15% at 89% 82%, transparent 96%, #000 100%)";
@@ -30,8 +29,7 @@ var BCC_BAG_COLORS = {
   purple: ["#7b2fa8", 0.9],
   blue: ["#2f6fd6", 0.85],
   grey: ["#5b6270", 1],
-  black: ["#1f2328", 1],
-  brown: ["#7a4a26", 1]
+  black: ["#1f2328", 1]
 };
 var bagSvg = (col, op, content) => `<svg class="bagsvg" viewBox="0 0 150 253" aria-hidden="true">
  <defs><clipPath id="bccbag"><path d="M28 250 C8 248 6 196 14 150 C20 112 40 92 60 86 L90 86 C110 92 130 112 136 150 C144 196 142 248 122 250 Z"/></clipPath>
@@ -121,10 +119,9 @@ var BIN_ALIASES = table({
   purple: ["violet", "mauve"],
   blue: [],
   grey: ["gray"],
-  black: [],
-  brown: []
+  black: []
 });
-var BINS = ["red", "yellow", "green", "purple", "blue", "grey", "black", "brown"];
+var BINS = ["red", "yellow", "green", "purple", "blue", "grey", "black"];
 var CONTAINER_ALIASES = table({
   wheelie_bin: ["bin", "wheelie"],
   bag: ["bags"],
@@ -350,8 +347,8 @@ function eventDays(events) {
 // src/lang/en.json
 var en_default = {
   card: {
-    bin: { red: "Red bin", yellow: "Yellow bin", green: "Green bin", purple: "Purple bin", blue: "Blue bin", grey: "Grey bin", black: "Black bin", brown: "Brown bin" },
-    bag: { red: "Red bag", yellow: "Yellow bag", green: "Green bag", purple: "Purple bag", blue: "Blue bag", grey: "Grey bag", black: "Black bag", brown: "Brown bag" },
+    bin: { red: "Red bin", yellow: "Yellow bin", green: "Green bin", purple: "Purple bin", blue: "Blue bin", grey: "Grey bin", black: "Black bin" },
+    bag: { red: "Red bag", yellow: "Yellow bag", green: "Green bag", purple: "Purple bag", blue: "Blue bag", grey: "Grey bag", black: "Black bag" },
     bulky: "Bulky waste",
     emptied: "Emptied",
     emptied_txt: "Emptied today ✅",

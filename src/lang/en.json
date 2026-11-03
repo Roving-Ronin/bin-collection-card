@@ -1,7 +1,7 @@
 {
   "card": {
-    "bin": { "red": "Red bin", "yellow": "Yellow bin", "green": "Green bin", "purple": "Purple bin", "blue": "Blue bin", "grey": "Grey bin", "black": "Black bin", "brown": "Brown bin" },
-    "bag": { "red": "Red bag", "yellow": "Yellow bag", "green": "Green bag", "purple": "Purple bag", "blue": "Blue bag", "grey": "Grey bag", "black": "Black bag", "brown": "Brown bag" },
+    "bin": { "red": "Red bin", "yellow": "Yellow bin", "green": "Green bin", "purple": "Purple bin", "blue": "Blue bin", "grey": "Grey bin", "black": "Black bin" },
+    "bag": { "red": "Red bag", "yellow": "Yellow bag", "green": "Green bag", "purple": "Purple bag", "blue": "Blue bag", "grey": "Grey bag", "black": "Black bag" },
     "bulky": "Bulky waste",
     "emptied": "Emptied",
     "emptied_txt": "Emptied today ✅",

@@ -23,7 +23,7 @@ Animated Lovelace card for bin collection days: the bin fills up over the cycle,
 | **Pickup** | pickup day, before the truck | the bin hops |
 | **Emptied** | pickup day, after the truck | sparkles ✨, green border |
 
-- 8 colours: `red`, `yellow`, `green`, `purple`, `blue`, `grey`, `black`, `brown`
+- 7 colours: `red`, `yellow`, `green`, `purple`, `blue`, `grey`, `black`
 - **Fully coloured bin** (`full_color: true`) or coloured lid only
 - **Rubbish bag** (`container: bag`) and **bulky waste** pile (`container: bulky`), or your own picture (`image`)
 - Schedules: weekly, **every N weeks from a start date** (fortnightly, four-weekly…), even/odd weeks, once a month, seasonal months
@@ -233,7 +233,7 @@ cards:
 
 | Option | Type | Default | Description |
 |---|---|---|---|
-| `bin` | text | **required** (except bulky) | `red`, `yellow`, `green`, `purple`, `blue`, `grey`, `black`, `brown` |
+| `bin` | text | **required** (except bulky) | `red`, `yellow`, `green`, `purple`, `blue`, `grey`, `black` |
 | `name` | text | from the colour | Card title |
 | `days` | list | — | Pickup days: numbers (0 = Monday) or names (`tuesday`, `tue`). Required unless `start_date`, `month_day` or `entity` is set |
 | `start_date` | date | — | A known pickup date; pickups repeat every `every` weeks from it. Overrides `weeks` |

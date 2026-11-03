@@ -15,7 +15,6 @@ export const BCC_BINS = {
   grey:  { img: 'grey', color: '#9ea6b8', content: 'rubbish' },
   black:  { img: 'grey', color: '#7c8496', content: 'rubbish',
             body: 'brightness(.42) contrast(1.15)', lid: 'brightness(.42) contrast(1.15)' },
-  brown: { img: 'yellow', color: '#a1887f', content: 'organics', paint: '#8a5a2b', lid: 'hue-rotate(-14deg) saturate(.75) brightness(.5)' },
 };
 /* body image proportions (width / height), to fit the full_color paint */
 export const BCC_BODY_RATIO = { grey: '190/295', yellow: '190/291' };
@@ -25,7 +24,7 @@ export const BCC_WHEEL_HOLE = 'radial-gradient(ellipse 10% 15% at 89% 82%, trans
 /* ---- rubbish bag: colour, and translucent or not ---- */
 export const BCC_BAG_COLORS = {
   red: ['#d32f2f', .92], yellow: ['#f5c518', .7], green: ['#8cc63f', .85], purple: ['#7b2fa8', .9],
-  blue: ['#2f6fd6', .85], grey: ['#5b6270', 1], black: ['#1f2328', 1], brown: ['#7a4a26', 1],
+  blue: ['#2f6fd6', .85], grey: ['#5b6270', 1], black: ['#1f2328', 1],
 };
 /* tied bag seen from the front, in the same 150 × 253 frame as the bin; contents show through a translucent bag */
 export const bagSvg = (col, op, content) => `<svg class="bagsvg" viewBox="0 0 150 253" aria-hidden="true">
