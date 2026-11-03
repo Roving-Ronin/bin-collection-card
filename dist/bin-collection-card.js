@@ -1,4 +1,4 @@
-/*! bin-collection-card v1.0.0 | https://github.com/Roving-Ronin/bin-collection-card | MIT | built from src/ — edit there, not here */
+/*! bin-collection-card v0.1.0 | https://github.com/Roving-Ronin/bin-collection-card | MIT | built from src/ — edit there, not here */
 
 // src/assets.js
 var BCC_IMG = {
@@ -617,7 +617,7 @@ if (!customElements.get("bin-collection-card-editor")) customElements.define("bi
  * https://github.com/Roving-Ronin/bin-collection-card — MIT License
  * Based on poubelle-card by Nicolas (https://github.com/skyrotter/ha-poubelle-card, MIT).
  */
-var BCC_VERSION = "1.0.0";
+var BCC_VERSION = "0.1.0";
 var STATE_CLASS = { eve: "eve", today: "today", emptied: "emptied", unknown: "", "": "" };
 var BinCollectionCard = class extends HTMLElement {
   static getStubConfig() {
