@@ -6,19 +6,18 @@ const table = groups => {
   return out;
 };
 
+/* Display order: the three bins every Australian household has, then glass, paper, others */
 export const BIN_ALIASES = table({
+  red: [],
+  yellow: [],
+  green: ['lime'],
+  purple: ['violet', 'mauve'],
+  blue: [],
   grey: ['gray'],
   black: [],
-  yellow: [],
-  green: [],
-  blue: [],
   brown: [],
-  red: [],
-  purple: ['violet', 'mauve'],
-  burgundy: ['maroon'],
-  lime: ['lime_green', 'lime-green'],
 });
-export const BINS = ['grey', 'black', 'yellow', 'green', 'blue', 'brown', 'red', 'purple', 'burgundy', 'lime'];
+export const BINS = ['red', 'yellow', 'green', 'purple', 'blue', 'grey', 'black', 'brown'];
 
 export const CONTAINER_ALIASES = table({
   wheelie_bin: ['bin', 'wheelie'],

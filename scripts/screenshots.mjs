@@ -20,13 +20,13 @@ const tile = { compact: false, show_meter: true };
 const scenes = {
   // four states: tonight (Fri pickup), pickup now (Thu), emptied (Thu, truck at 07:00), in 3 days (Sun)
   preview: { width: 880, height: 350, cols: 4, cards: () => [
-    { bin: 'grey', days: [4] }, { bin: 'yellow', days: [3] }, { bin: 'black', days: [3], hour: 7 }, { bin: 'green', days: [6] },
+    { bin: 'red', days: [4] }, { bin: 'yellow', days: [3] }, { bin: 'green', days: [3], hour: 7 }, { bin: 'purple', days: [6] },
   ] },
-  'preview-full-color': { width: 1072, height: 316, cols: 6, cards: () =>
-    ['red', 'yellow', 'lime', 'burgundy', 'purple', 'blue']
+  'preview-full-color': { width: 1072, height: 316, cols: 5, cards: () =>
+    ['red', 'yellow', 'green', 'purple', 'blue']
       .map(bin => ({ bin, days: [6], full_color: true, scale: 0.5, headroom: 30 })) },
   'preview-bags': { width: 1072, height: 316, cols: 5, cards: () =>
-    ['black', 'yellow', 'green', 'blue', 'brown'].map(bin => ({ bin, container: 'bag', days: [6], scale: 0.6, headroom: 0 })) },
+    ['red', 'yellow', 'green', 'purple', 'blue'].map(bin => ({ bin, container: 'bag', days: [6], scale: 0.6, headroom: 0 })) },
 };
 
 const html = (w, h, cols) => `<!doctype html><html><head><meta charset="utf-8"><style>

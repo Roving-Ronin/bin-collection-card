@@ -23,7 +23,7 @@ Animated Lovelace card for bin collection days: the bin fills up over the cycle,
 | **Pickup** | pickup day, before the truck | the bin hops |
 | **Emptied** | pickup day, after the truck | sparkles ✨, green border |
 
-- 10 colours: `grey`, `black`, `yellow`, `green`, `blue`, `brown`, `red`, `purple`, `burgundy`, `lime`
+- 8 colours: `red`, `yellow`, `green`, `purple`, `blue`, `grey`, `black`, `brown`
 - **Fully coloured bin** (`full_color: true`) or coloured lid only
 - **Rubbish bag** (`container: bag`) and **bulky waste** pile (`container: bulky`), or your own picture (`image`)
 - Schedules: weekly, **every N weeks from a start date** (fortnightly, four-weekly…), even/odd weeks, once a month, seasonal months
@@ -58,12 +58,19 @@ hour: 6                   # time the truck comes
 ```
 
 ### Australian bins
-Typical lids: `red` general waste, `yellow` recycling, `lime` garden or FOGO, `burgundy` food / FOGO, `purple` glass, `blue` paper. Councils differ, so pick the colour of your lid and set `content` for what goes in it.
+| Lid | `bin` | What goes in it | Shows when full |
+|---|---|---|---|
+| Red | `red` | General waste / landfill | rubbish bags |
+| Yellow | `yellow` | Mixed recycling: glass bottles and jars, hard plastics, cans, paper and cardboard | recycling |
+| Green | `green` | Food and garden organics (FOGO) | organics |
+| Purple | `purple` | Glass recycling | glass bottles |
+| Blue | `blue` | Paper and cardboard (mostly commercial) | paper and cardboard |
+
+Councils differ: if yours uses a colour for something else, set `content` (`rubbish`, `recycling`, `organics`, `glass`, `paper`) and `name`.
 ```yaml
 type: custom:bin-collection-card
-bin: lime
+bin: green
 name: FOGO
-content: organics
 start_date: 2026-11-04
 every: 2
 full_color: true
@@ -226,7 +233,7 @@ cards:
 
 | Option | Type | Default | Description |
 |---|---|---|---|
-| `bin` | text | **required** (except bulky) | `grey`, `black`, `yellow`, `green`, `blue`, `brown`, `red`, `purple`, `burgundy`, `lime` |
+| `bin` | text | **required** (except bulky) | `red`, `yellow`, `green`, `purple`, `blue`, `grey`, `black`, `brown` |
 | `name` | text | from the colour | Card title |
 | `days` | list | — | Pickup days: numbers (0 = Monday) or names (`tuesday`, `tue`). Required unless `start_date`, `month_day` or `entity` is set |
 | `start_date` | date | — | A known pickup date; pickups repeat every `every` weeks from it. Overrides `weeks` |

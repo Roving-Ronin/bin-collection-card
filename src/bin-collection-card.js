@@ -115,8 +115,7 @@ class BinCollectionCard extends HTMLElement {
     // body's shape, tints the grey while keeping its shading and highlights (mix-blend-mode: color).
     const img = String(c.image || '').trim();
     const paint = c.full_color && !this._bag && !this._bulky && !img ? (c.body_color || B.paint || '') : '';
-    // dark colours (burgundy) darken the grey body under the paint, which only sets hue and saturation
-    const bodyF = c.body_filter || (paint && !c.body_color && B.paintBody) || B.body || '', lidF = c.lid_filter || B.lid || '';
+    const bodyF = c.body_filter || B.body || '', lidF = c.lid_filter || B.lid || '';
     const [bagCol, bagOp] = BCC_BAG_COLORS[this._bin];
     const bodyImg = BCC_IMG[B.img].body;
     if (!this.shadowRoot) this.attachShadow({ mode: 'open' });

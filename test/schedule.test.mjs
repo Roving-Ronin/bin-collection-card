@@ -125,6 +125,6 @@ test('eventDays: all-day end is exclusive, multi-day expands, timed events count
 });
 
 test('colours and their aliases', () => {
-  for (const [v, exp] of [['purple', 'purple'], ['violet', 'purple'], ['Burgundy', 'burgundy'], ['maroon', 'burgundy'],
-    ['lime', 'lime'], ['lime_green', 'lime']]) assert.equal(normalizeConfig({ bin: v }).bin, exp, v);
+  for (const [v, exp] of [['purple', 'purple'], ['violet', 'purple'], ['Green', 'green'], ['lime', 'green']]) assert.equal(normalizeConfig({ bin: v }).bin, exp, v);
+  assert.equal(normalizeConfig({ bin: 'burgundy' }).bin, 'burgundy'); // not a colour: left as written, setConfig reports it
 });
