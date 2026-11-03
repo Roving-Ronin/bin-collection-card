@@ -12,7 +12,7 @@
     "screenshots": "node scripts/screenshots.mjs"
   },
   "devDependencies": {
-    "esbuild": "^0.25.0",
-    "puppeteer-core": "^23.11.1"
+    "esbuild": "^0.28.2",
+    "puppeteer-core": "^25.16.0"
   }
 }
