@@ -12,7 +12,7 @@ import { findCalendar, calendarDays } from './calendars.js';
 import './editor.js';
 
 // Set by the release workflow from the release tag (v1.1.0 -> '1.1.0'); don't edit by hand.
-const BCC_VERSION = '0.1.0';
+const BCC_VERSION = '1.0.0';
 /* card state → CSS class on ha-card (for card-mod styling) */
 const STATE_CLASS = { eve: 'eve', today: 'today', emptied: 'emptied', unknown: '', '': '' };
 
