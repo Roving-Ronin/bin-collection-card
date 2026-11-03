@@ -1,0 +1,104 @@
+name: Bug report
+description: Report a problem with the Bin Collection Card
+labels: ['type/bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **NOTE:** Before you start, please check the following.
+
+        - Read the [README](https://github.com/Roving-Ronin/bin-collection-card/blob/main/README.md) to ensure the correct setup.
+        - Make sure no [similar issues (including closed ones)](https://github.com/Roving-Ronin/bin-collection-card/issues?q=is%3Aissue+label%3Atype%2Fbug) exist.
+        - Make sure you are on the latest release, and have refreshed your browser cache (Ctrl+F5 / Cmd+Shift+R) after updating.
+
+        Thanks for taking the time to help improve this project!
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists for the bug you encountered.
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: dropdown
+    id: schedule
+    attributes:
+      label: Schedule source
+      description: How does the card get its pickup dates?
+      options:
+        - Fixed days (days / start_date / month_week / month_day)
+        - Sensor entity (date, days left, Waste Collection Schedule…)
+        - Calendar entity
+        - input_datetime
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Current Behaviour
+      description: A concise description of what you're experiencing. Screenshots of the card are very helpful.
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps To Reproduce
+      description: Steps to reproduce the behaviour.
+      placeholder: |
+        1. With this card configuration...
+        2. On this date / time...
+        3. See error...
+    validations:
+      required: false
+  - type: textarea
+    id: expected-behaviour
+    attributes:
+      label: Expected Behaviour
+      description: A concise description of what you expected to happen (e.g. which date the next pickup should be).
+      placeholder: Tell us what you should see!
+    validations:
+      required: true
+  - type: input
+    id: card-version
+    attributes:
+      label: Card Version
+      description: Shown in the browser console as BIN-COLLECTION-CARD vX.Y.Z (F12 → Console), or in HACS.
+    validations:
+      required: true
+  - type: input
+    id: ha-version
+    attributes:
+      label: Home Assistant Version
+      description: The version of Home Assistant you have installed (Settings → About).
+    validations:
+      required: true
+  - type: input
+    id: holidays
+    attributes:
+      label: Holiday / Workday integrations
+      description: If you use `holidays`, which country / state is the Holiday (and Workday) integration set to?
+    validations:
+      required: false
+  - type: input
+    id: browser
+    attributes:
+      label: Browser / App
+      description: e.g. Chrome 130 on Windows, HA Companion app on iOS.
+    validations:
+      required: false
+  - type: textarea
+    id: config
+    attributes:
+      label: Card Configuration
+      description: Paste the card's YAML (dashboard → edit card → Show code editor). This will be automatically formatted into code, so no need for backticks.
+      render: yaml
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Browser Console Errors
+      description: Open the browser developer tools (F12 → Console) with the dashboard loaded, and paste any red errors mentioning the card. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+    validations:
+      required: false

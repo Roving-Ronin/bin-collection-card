@@ -1,0 +1,12 @@
+---
+blank_issues_enabled: false
+contact_links:
+  - name: Bin Collection Card documentation
+    url: https://github.com/Roving-Ronin/bin-collection-card/blob/main/README.md
+    about: Installation, configuration and all card options.
+  - name: Holiday integration (public holidays)
+    url: https://www.home-assistant.io/integrations/holiday
+    about: Used by the card's `holidays` option.
+  - name: Workday integration (next work day)
+    url: https://www.home-assistant.io/integrations/workday
+    about: "Used by `holidays: next_work_day`."

@@ -1,0 +1,21 @@
+version: 2
+updates:
+  # Keep GitHub Actions used by the workflows up to date
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    labels:
+      - 'type/dependencies'
+
+  # Build and screenshot tools (esbuild, puppeteer-core); devDependencies only, nothing ships to users
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    labels:
+      - 'type/dependencies'
+    groups:
+      dev-tools:
+        patterns:
+          - '*'
